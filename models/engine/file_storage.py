@@ -33,10 +33,10 @@ class FileStorage:
         """serialize __object to JSON file in file path"""
         new_dict = {}
         for key in FileStorage.__objects.keys():
-            new_dict[key] = FileStorage.__objects[key].to_json()
+            new_dict[key] = FileStorage.__objects[key].to_dict()
         with open(FileStorage.__file_path, 'w',
                   encoding="UTF-8") as dest_file:
-            json.dumps(new_dict, dest_file)
+            json.dump(new_dict, dest_file)
 
     def reload(self):
         """deserializes the JSON file to object if file path exist"""
