@@ -5,6 +5,7 @@ dictionary representation
 """
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -17,7 +18,10 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-    object_class = {"BaseModel": BaseModel}
+    object_class = {
+            "BaseModel": BaseModel,
+            "User": User,
+            }
 
     def all(self):
         """return dict object"""
@@ -45,7 +49,7 @@ class FileStorage:
                       encoding="UTF-8") as dest_file:
                 read_objects = json.load(dest_file)
 
-                new_object_class = ["BaseModel"]
+                new_object_class = ["BaseModel", "User"]
 
                 for key, value in read_objects.items():
                     if value.get("__class__") in new_object_class:
